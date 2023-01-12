@@ -74,7 +74,9 @@ private @FindBy(xpath = "//div[@class = 'Toastify__toast-body']")
     public void clickOn_EndDatePicker_Input_And_Select_Current_Date() {
         waitForElementAndClick(end_date_input);
         waitForElementAndClick(current_date);
-        waitForElementAndClick(end_time); // TODO 23:55ten sonra test çalışırsa listede eleman kalmayacak ve burası patlayabilir
+        waitForElementAndClick(end_time);
+        // TODO 23:50ten sonra test çalışırsa listede eleman kalmayacak ve burası patlayabilir
+        // TODO en son end date 1 gün sonrası seçilirse sıkıntı kalmaz
     }
 
     public void clickOn_Assignment_Type_Selection() {

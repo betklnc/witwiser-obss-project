@@ -19,7 +19,10 @@ public class StartAndFinishExamStepsDef extends Base_PO {
     @When("User starts and finish the exam answering the all questions")
     public void user_starts_and_finish_the_exam_answering_the_all_questions() {
         exam_po.clickOn_Start_Test_Button();
-
+        exam_po.clickOn_Exam_Start_Test_Button();
+        exam_po.answer_Questions();
+        exam_po.clickOn_FinishTest_Button();
+        exam_po.clickOn_Complete_Test_Button();
     }
 
     @Then("It's seen that user complete exam assigned")
