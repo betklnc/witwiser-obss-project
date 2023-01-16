@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-public class Session_PO extends Base_PO {
+public class Session_PageObject extends BasePageObject {
     private @FindBy(xpath = "(//a[@class=\"item src-common-components-Navbar-NavbarItem-NavbarItem__item  \"])[4]")
     WebElement session_MenuLink;
     private @FindBy(xpath = "//button[@class='ui button src-scenes-session-components-SessionCreateButton-SessionCreateButton__button']")
@@ -45,7 +45,7 @@ public class Session_PO extends Base_PO {
     private @FindBy(xpath = "//span[@class='src-common-components-UserSearch-UserSearch__title']")
     WebElement session_search_result;
 
-    public Session_PO() {
+    public Session_PageObject() {
         super();
     }
 
@@ -103,6 +103,6 @@ public class Session_PO extends Base_PO {
     }
 
     public void validate_Complete_Assign_Session() {
-        waitForAlert_And_ValidateText(success_message_toast, "Session successfully created.");
+        waitForAlertAndValidateText(success_message_toast, "Session successfully created.");
     }
 }

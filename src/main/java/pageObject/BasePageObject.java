@@ -1,7 +1,5 @@
 package pageObject;
 
-import drivers.DriverFactory;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,12 +11,12 @@ import java.time.Duration;
 
 import static drivers.DriverFactory.getDriver;
 
-public class Base_PO {
-    public Base_PO() {
+public class BasePageObject {
+    public BasePageObject() {
         PageFactory.initElements(getDriver(), this);
     }
 
-    public void navigateTo_URL(String url) { //TODO tüm method ve variable isimleri Camel case olacak
+    public void navigateToURL(String url) {
         getDriver().get(url);
     }
 
@@ -32,11 +30,11 @@ public class Base_PO {
     }
 
     public WebElement waitElement(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_EXPLICIT_TIMEOUT)); // TODO her seferinde obje oluşturuyor manyak
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_EXPLICIT_TIMEOUT));
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void waitForAlert_And_ValidateText(WebElement element, String text) {
+    public void waitForAlertAndValidateText(WebElement element, String text) {
         waitUntilElementVisible(element, 0);
         String success_message = element.getText();
         Assert.assertEquals(success_message, text);

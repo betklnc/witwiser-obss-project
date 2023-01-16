@@ -1,14 +1,14 @@
 package stepDefinitions;
 
 import io.cucumber.java.en.*;
-import pageObject.Base_PO;
-import pageObject.Exam_PO;
+import pageObject.BasePageObject;
+import pageObject.Exam_PageObject;
 
-public class StartAndFinishExamStepsDef extends Base_PO {
+public class StartAndFinishExamStepsDef extends BasePageObject {
 
-    private Exam_PO exam_po;
+    private Exam_PageObject exam_po;
 
-    public StartAndFinishExamStepsDef(Exam_PO exam_po) {
+    public StartAndFinishExamStepsDef(Exam_PageObject exam_po) {
         this.exam_po = exam_po;
     }
 

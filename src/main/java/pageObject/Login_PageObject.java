@@ -4,10 +4,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utils.Global_Vars;
 
-public class Login_PO extends Base_PO{
+public class Login_PageObject extends BasePageObject {
 
 
-    public Login_PO() {
+    public Login_PageObject() {
         super();
     }
     private  @FindBy(xpath= "//*[@name=\"username\"]")
@@ -24,7 +24,7 @@ public class Login_PO extends Base_PO{
 
 
     public void navigateToWitwiserUrl() {
-        navigateTo_URL(Global_Vars.HOMEPAGE_URL);
+        navigateToURL(Global_Vars.HOMEPAGE_URL);
     }
     public  void setUsername(String username){
         sendKeys(username_TextField, "witwises-admin");

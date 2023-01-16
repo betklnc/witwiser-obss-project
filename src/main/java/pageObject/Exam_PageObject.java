@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class Exam_PO extends Base_PO {
+public class Exam_PageObject extends BasePageObject {
     int totalQuestionCount = 4; //(question_buttons.size() + 1); // TODO burası question buttonsın yüklenmesini bekleyecek.
     private @FindBy(xpath = "(//a[@class=\"item src-common-components-Navbar-NavbarItem-NavbarItem__item  \"])[1]")
     WebElement home_menuLink;
@@ -39,7 +39,7 @@ public class Exam_PO extends Base_PO {
     private @FindBy(xpath = "//div[@class ='ui medium label src-common-components-Questions-DragAndDrop-BlankItem__blankLabel']")
     WebElement home_last_start_date;
 
-    public Exam_PO() {
+    public Exam_PageObject() {
         super();
     }
 

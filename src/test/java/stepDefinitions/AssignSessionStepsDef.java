@@ -3,16 +3,16 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pageObject.Base_PO;
-import pageObject.Login_PO;
-import pageObject.Session_PO;
+import pageObject.BasePageObject;
+import pageObject.Login_PageObject;
+import pageObject.Session_PageObject;
 
-public class AssignSessionStepsDef extends Base_PO {
+public class AssignSessionStepsDef extends BasePageObject {
 
-    private Login_PO login_po;
-    private Session_PO session_po;
+    private Login_PageObject login_po;
+    private Session_PageObject session_po;
 
-    public AssignSessionStepsDef(Login_PO login_po, Session_PO session_po) {
+    public AssignSessionStepsDef(Login_PageObject login_po, Session_PageObject session_po) {
         this.login_po = login_po;
         this.session_po = session_po;
     }
