@@ -10,66 +10,66 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class Exam_PageObject extends BasePageObject {
+public class ExamPageObject extends BasePageObject {
     int totalQuestionCount = 4; //(question_buttons.size() + 1); // TODO burası question buttonsın yüklenmesini bekleyecek.
     private @FindBy(xpath = "(//a[@class=\"item src-common-components-Navbar-NavbarItem-NavbarItem__item  \"])[1]")
-    WebElement home_menuLink;
+    WebElement homeMenuLink;
     private @FindBy(xpath = "//a[@class='ui button src-scenes-dashboard-components-WarningInfo-WarningInfo__buttonElement'][1]")
-    WebElement home_start_test_button;
+    WebElement homeStartTestButton;
     private @FindBy(xpath = "//*[@class='ui primary button src-scenes-session-components-SessionInfoCard-SessionInfoCard__startButton src-common-components-AssesmentButton-AssesmentButton__button']")
-    WebElement exam_start_test_button;
+    WebElement examStartTestButton;
     private @FindBy(xpath = "(//*[@class='ui checkbox src-common-components-Questions-Questions__listItem'])[1]")
-    WebElement question_checkboxes;
+    WebElement questionCheckbox;
     private @FindBy(xpath = "(//*[@class='ui checkbox src-common-components-Questions-Questions__listItem'])")
-    List<WebElement> checkboxes;
+    List<WebElement> answerAllCheckboxesList;
     private @FindBy(xpath = "//div[@class='ql-editor ql-blank']")
-    WebElement answer_text_area;
+    WebElement answerTextArea;
     private @FindBy(xpath = "(//div[@class='ui radio checkbox src-common-components-Questions-Questions__listItem'])[2]")
-    WebElement question_radiobutton;
+    WebElement answerRadioButton;
     private @FindBy(xpath = "//img[@src ='/static/media/arrow_next.00f4e471.svg']")
-    WebElement next_question;
+    WebElement nextQuestionButton;
     private @FindBy(xpath = "//div[@class ='src-scenes-session-pages-test-SessionTest__testHeaderActions']")
-    WebElement finish_test_button;
+    WebElement finishTestButton;
     private @FindBy(xpath = "//button[@class ='ui primary right floated button src-common-components-AssesmentButton-AssesmentButton__button']")
-    WebElement complete_test_button;
-    private @FindBy(xpath = "//button[@class ='src-scenes-session-pages-test-SessionTest__questionBox ']")
-    List<WebElement> question_buttons;
-    private @FindBy(xpath = "//div[@class ='ui medium label src-common-components-Questions-DragAndDrop-BlankItem__blankLabel']")
-    WebElement dragTest;
-    private @FindBy(xpath = "//div[@class ='ui medium label src-common-components-Questions-DragAndDrop-BlankItem__blankLabel']")
-    WebElement home_last_start_date;
+    WebElement completeTestButton;
 
-    public Exam_PageObject() {
+    private @FindBy(xpath = "//button[@class ='src-scenes-session-pages-test-SessionTest__questionBox ']")
+    List<WebElement> questionNumbers; // 14.satır düzeltildiğinde buna ihtiyaç olacak.
+    private @FindBy(xpath = "//div[@class ='ui medium label src-common-components-Questions-DragAndDrop-BlankItem__blankLabel']")
+    WebElement answerDragDrop;
+
+
+    public ExamPageObject() {
         super();
     }
 
     public void clickOn_Homepage_link() {
-        waitForElementAndClick(home_menuLink);
+        waitForElementAndClick(homeMenuLink);
     }
 
     public void clickOn_Start_Test_Button() {
-        waitForElementAndClick(home_start_test_button);
+        waitForElementAndClick(homeStartTestButton);
     }
 
     public void clickOn_Exam_Start_Test_Button() {
-        waitForElementAndClick(exam_start_test_button);
+        waitForElementAndClick(examStartTestButton);
     }
 
     public void answer_Questions() {
         for (int i = 1; i <= totalQuestionCount; i++) {
-            if (isQuestionTypeDisplayed(answer_text_area)) {
-                sendKeys(answer_text_area, "Yazılım Testi");
+            if (isQuestionTypeDisplayed(answerTextArea)) {
+                sendKeys(answerTextArea, "Yazılım Testi");
                 System.out.println("answer_text_area");
                 clickOn_Next_Question(i, totalQuestionCount);
-            } else if (isQuestionTypeDisplayed(question_radiobutton)) {
-                waitForElementAndClick(question_radiobutton);
+            } else if (isQuestionTypeDisplayed(answerRadioButton)) {
+                waitForElementAndClick(answerRadioButton);
                 System.out.println("radio button");
                 clickOn_Next_Question(i, totalQuestionCount);
-            } else if (isQuestionTypeDisplayed(question_checkboxes)) {
+            } else if (isQuestionTypeDisplayed(questionCheckbox)) {
                 selectAllCheckboxes();
                 System.out.println("checkbox");
                 clickOn_Next_Question(i, totalQuestionCount);
-            } else if (isQuestionTypeDisplayed(dragTest)) { // TODO 83. satırda waitForElementClick yapılacak.
+            } else if (isQuestionTypeDisplayed(answerDragDrop)) { // TODO 83. satırda waitForElementClick yapılacak.
                 dragAndDrop();
                 System.out.println("drag and drop");
                 clickOn_Next_Question(i, totalQuestionCount);
@@ -107,25 +107,25 @@ public class Exam_PageObject extends BasePageObject {
 
 
     public void clickOn_FinishTest_Button() {
-        waitForElementAndClick(finish_test_button);
+        waitForElementAndClick(finishTestButton);
     }
 
     public void clickOn_Next_Question(int questionIndex, int questionSize) {
         System.out.println(questionIndex);
         System.out.println(questionSize);
         if (questionIndex != questionSize) {
-            waitForElementAndClick(next_question);
+            waitForElementAndClick(nextQuestionButton);
         } else {
             clickOn_FinishTest_Button();
         }
     }
 
     public void clickOn_Complete_Test_Button() {
-        waitForElementAndClick(complete_test_button);
+        waitForElementAndClick(completeTestButton);
     }
 
     private void selectAllCheckboxes() {
-        for (WebElement checkbox : checkboxes) {
+        for (WebElement checkbox : answerAllCheckboxesList) {
             if (!checkbox.isSelected()) {
                 waitForElementAndClick(checkbox);
             }
