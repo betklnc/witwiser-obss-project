@@ -83,19 +83,22 @@ public class Exam_PO extends Base_PO {
         WebDriver driver = DriverFactory.getDriver();
         Actions builder = new Actions(driver);
         for (int j = 1; j <= 4; j++) {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             Action dragAndDrop = builder.clickAndHold(driver.findElement(By.xpath("//div[@class ='ui medium label src-common-components-Questions-DragAndDrop-BlankItem__blankLabel']")))
                     .moveToElement(driver.findElement(By.xpath("//span[@class ='src-common-components-Questions-DragAndDrop-QuestionPreview__placeholder']")))
                     .release(driver.findElement(By.xpath("//span[@class ='src-common-components-Questions-DragAndDrop-QuestionPreview__placeholder']")))
                     .build();
             dragAndDrop.perform();
-            System.out.println("betul");
         }
-
     }
 
     private boolean isQuestionTypeDisplayed(WebElement element) {
         try { // TODO isDisplayed neden false dönemiyor?
-            waitUntilElementVisible(element, 50);
+            waitUntilElementVisible(element, 300);
             return element.isDisplayed();
         } catch (Exception ex) {
             return false;
