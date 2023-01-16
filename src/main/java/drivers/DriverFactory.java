@@ -1,7 +1,9 @@
 package drivers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -31,7 +33,6 @@ public class DriverFactory {
             case "firefox" -> {
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
-
                 break;
             }
         }
@@ -61,7 +62,6 @@ public class DriverFactory {
 
     public static void cleanupDriver() {
         getDriver().quit();
-        webDriver.remove(); // TODO bu da getDriver şeklinde çağrılacak, refactor et.
     }
 }
 
