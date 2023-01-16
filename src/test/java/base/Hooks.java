@@ -13,18 +13,18 @@ public class Hooks {
         clearCookieBeforeStart();
     }
 
-    @Before(value = "@assignsession", order = 2)
+    @Before(value = "@assignSession", order = 2)
 
     public void scenario1() {
-        System.out.println("assignsession ok");
+        System.out.println("assign session scenario is ok");
     }
 
-    @Before(value = "@completeexam", order = 1)
+    @Before(value = "@completeExam", order = 1)
     public void scenario2() {
-        System.out.println("completeexam ok");
+        System.out.println("complete exam scenario is ok");
     }
 
-        @After
+    @After
     public void closeDriver() {
         cleanupDriver();
     }
