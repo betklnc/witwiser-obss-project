@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,12 +15,12 @@ public class StartAndFinishExamStepsDef extends BasePageObject {
         this.examPo = examPo;
     }
 
-    @Given("User navigate to Home page")
+    @And("User navigate to Home page")
     public void user_navigate_to_home_page() {
         examPo.clickOnHomepageLink();
     }
 
-    @When("User starts and finish the exam answering the all questions")
+    @And("User starts and finish the exam answering the all questions")
     public void user_starts_and_finish_the_exam_answering_the_all_questions() {
         examPo.clickOnStartTestButton();
         examPo.clickOnExamStartTestButton();

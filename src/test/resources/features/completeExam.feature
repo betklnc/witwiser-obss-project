@@ -10,8 +10,8 @@ Feature: Complete exam in assigned session as succesfully
 
   @completeExam
   Scenario: User completes assigning exam to her
-    Given User navigate to Home page
-    When  User starts and finish the exam answering the all questions
+    And User navigate to Home page
+    And  User starts and finish the exam answering the all questions
     Then  It's seen that user complete exam assigned
 
 
