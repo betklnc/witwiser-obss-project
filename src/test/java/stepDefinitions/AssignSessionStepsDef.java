@@ -4,15 +4,15 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObject.BasePageObject;
-import pageObject.Login_PageObject;
+import pageObject.LoginPageObject;
 import pageObject.Session_PageObject;
 
 public class AssignSessionStepsDef extends BasePageObject {
 
-    private Login_PageObject login_po;
+    private LoginPageObject login_po;
     private Session_PageObject session_po;
 
-    public AssignSessionStepsDef(Login_PageObject login_po, Session_PageObject session_po) {
+    public AssignSessionStepsDef(LoginPageObject login_po, Session_PageObject session_po) {
         this.login_po = login_po;
         this.session_po = session_po;
     }
@@ -22,7 +22,7 @@ public class AssignSessionStepsDef extends BasePageObject {
         login_po.navigateToWitwiserUrl();
         login_po.setUsername(username);
         login_po.setPassword(password);
-        login_po.clickOn_Login_Button();
+        login_po.clickOnLoginButton();
     }
 
     @When("User assigns session to user")
