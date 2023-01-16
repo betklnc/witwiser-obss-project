@@ -43,36 +43,36 @@ public class ExamPageObject extends BasePageObject {
         super();
     }
 
-    public void clickOn_Homepage_link() {
+    public void clickOnHomepageLink() {
         waitForElementAndClick(homeMenuLink);
     }
 
-    public void clickOn_Start_Test_Button() {
+    public void clickOnStartTestButton() {
         waitForElementAndClick(homeStartTestButton);
     }
 
-    public void clickOn_Exam_Start_Test_Button() {
+    public void clickOnExamStartTestButton() {
         waitForElementAndClick(examStartTestButton);
     }
 
-    public void answer_Questions() {
+    public void detectAndAnswerQuestions() {
         for (int i = 1; i <= totalQuestionCount; i++) {
             if (isQuestionTypeDisplayed(answerTextArea)) {
                 sendKeys(answerTextArea, "Yazılım Testi");
                 System.out.println("answer_text_area");
-                clickOn_Next_Question(i, totalQuestionCount);
+                clickOnNextQuestion(i, totalQuestionCount);
             } else if (isQuestionTypeDisplayed(answerRadioButton)) {
                 waitForElementAndClick(answerRadioButton);
                 System.out.println("radio button");
-                clickOn_Next_Question(i, totalQuestionCount);
+                clickOnNextQuestion(i, totalQuestionCount);
             } else if (isQuestionTypeDisplayed(questionCheckbox)) {
                 selectAllCheckboxes();
                 System.out.println("checkbox");
-                clickOn_Next_Question(i, totalQuestionCount);
+                clickOnNextQuestion(i, totalQuestionCount);
             } else if (isQuestionTypeDisplayed(answerDragDrop)) { // TODO 83. satırda waitForElementClick yapılacak.
                 dragAndDrop();
                 System.out.println("drag and drop");
-                clickOn_Next_Question(i, totalQuestionCount);
+                clickOnNextQuestion(i, totalQuestionCount);
             } else {
                 System.out.println("Undefined question type");
             }
@@ -105,22 +105,21 @@ public class ExamPageObject extends BasePageObject {
         }
     }
 
-
-    public void clickOn_FinishTest_Button() {
+    public void clickOnFinishTestButton() {
         waitForElementAndClick(finishTestButton);
     }
 
-    public void clickOn_Next_Question(int questionIndex, int questionSize) {
+    public void clickOnNextQuestion(int questionIndex, int questionSize) {
         System.out.println(questionIndex);
         System.out.println(questionSize);
         if (questionIndex != questionSize) {
             waitForElementAndClick(nextQuestionButton);
         } else {
-            clickOn_FinishTest_Button();
+            clickOnFinishTestButton();
         }
     }
 
-    public void clickOn_Complete_Test_Button() {
+    public void clickOnCompleteTestButton() {
         waitForElementAndClick(completeTestButton);
     }
 
