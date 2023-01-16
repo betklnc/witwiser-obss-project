@@ -1,7 +1,6 @@
 package pageObject;
 
 import drivers.DriverFactory;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -36,7 +35,9 @@ public class ExamPageObject extends BasePageObject {
     private @FindBy(xpath = "//button[@class ='src-scenes-session-pages-test-SessionTest__questionBox ']")
     List<WebElement> questionNumbers; // 14.satır düzeltildiğinde buna ihtiyaç olacak.
     private @FindBy(xpath = "//div[@class ='ui medium label src-common-components-Questions-DragAndDrop-BlankItem__blankLabel']")
-    WebElement answerDragDrop;
+    WebElement answerFromDragDrop;
+    private @FindBy(xpath = "//span[@class ='src-common-components-Questions-DragAndDrop-QuestionPreview__placeholder']")
+    WebElement answerToDragDrop;
 
 
     public ExamPageObject() {
@@ -69,7 +70,7 @@ public class ExamPageObject extends BasePageObject {
                 selectAllCheckboxes();
                 System.out.println("checkbox");
                 clickOnNextQuestion(i, totalQuestionCount);
-            } else if (isQuestionTypeDisplayed(answerDragDrop)) { // TODO 83. satırda waitForElementClick yapılacak.
+            } else if (isQuestionTypeDisplayed(answerFromDragDrop)) {
                 dragAndDrop();
                 System.out.println("drag and drop");
                 clickOnNextQuestion(i, totalQuestionCount);
@@ -83,16 +84,25 @@ public class ExamPageObject extends BasePageObject {
         WebDriver driver = DriverFactory.getDriver();
         Actions builder = new Actions(driver);
         for (int j = 1; j <= 4; j++) {
+            // TODO thread.sleep yerine başka yöntem bulunmalı
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            Action dragAndDrop = builder.clickAndHold(driver.findElement(By.xpath("//div[@class ='ui medium label src-common-components-Questions-DragAndDrop-BlankItem__blankLabel']")))
-                    .moveToElement(driver.findElement(By.xpath("//span[@class ='src-common-components-Questions-DragAndDrop-QuestionPreview__placeholder']")))
-                    .release(driver.findElement(By.xpath("//span[@class ='src-common-components-Questions-DragAndDrop-QuestionPreview__placeholder']")))
+            Action dragAndDrop = builder.clickAndHold(answerFromDragDrop)
+                    .moveToElement(answerToDragDrop)
+                    .release(answerToDragDrop)
                     .build();
             dragAndDrop.perform();
+        }
+    }
+
+    private void selectAllCheckboxes() {
+        for (WebElement checkbox : answerAllCheckboxesList) {
+            if (!checkbox.isSelected()) {
+                waitForElementAndClick(checkbox);
+            }
         }
     }
 
@@ -105,10 +115,6 @@ public class ExamPageObject extends BasePageObject {
         }
     }
 
-    public void clickOnFinishTestButton() {
-        waitForElementAndClick(finishTestButton);
-    }
-
     public void clickOnNextQuestion(int questionIndex, int questionSize) {
         System.out.println(questionIndex);
         System.out.println(questionSize);
@@ -119,15 +125,12 @@ public class ExamPageObject extends BasePageObject {
         }
     }
 
+    public void clickOnFinishTestButton() {
+        waitForElementAndClick(finishTestButton);
+    }
+
     public void clickOnCompleteTestButton() {
         waitForElementAndClick(completeTestButton);
     }
 
-    private void selectAllCheckboxes() {
-        for (WebElement checkbox : answerAllCheckboxesList) {
-            if (!checkbox.isSelected()) {
-                waitForElementAndClick(checkbox);
-            }
-        }
-    }
 }
