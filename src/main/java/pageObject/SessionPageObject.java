@@ -7,102 +7,96 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-public class Session_PageObject extends BasePageObject {
+public class SessionPageObject extends BasePageObject {
     private @FindBy(xpath = "(//a[@class=\"item src-common-components-Navbar-NavbarItem-NavbarItem__item  \"])[4]")
-    WebElement session_MenuLink;
+    WebElement sessionMenuLink;
     private @FindBy(xpath = "//button[@class='ui button src-scenes-session-components-SessionCreateButton-SessionCreateButton__button']")
-    WebElement session_button;
+    WebElement sessionButton;
     private @FindBy(xpath = "(//input[@class='prompt'])[2]")
-    WebElement template_searchIcon;
+    WebElement templateSearchIcon;
     private @FindBy(xpath = "(//div[@class='src-common-components-SessionTemplateSearch-SessionTemplateSearch__templateItemContainer'])[1]")
-    WebElement template_option;
+    WebElement templateOption;
     private @FindBy(xpath = "(//div[@class='react-datepicker-wrapper'])[1]")
-    WebElement start_date_input;
+    WebElement startDateInput;
     private @FindBy(xpath = "(//div[@class='react-datepicker-wrapper'])[2]")
-    WebElement end_date_input;
+    WebElement endDateInput;
     private @FindBy(className = "react-datepicker__day--today")
-    WebElement current_date;
+    WebElement currentDate;
     private @FindBy(xpath = "//li[@class='react-datepicker__time-list-item '][1]")
-    WebElement end_time;
+    WebElement endTime;
     private @FindBy(xpath = "//div[@name='assignmentType']")
-    WebElement assignment_type_select;
-
+    WebElement assignmentTypeSelect;
     private @FindBy(xpath = "//*[contains(@class, 'text') and text() = 'Single Assignment']")
-    WebElement assignment_type_option;
-
+    WebElement assignmentTypeOption;
     private @FindBy(xpath = "(//input[@class = 'prompt'])[2]")
-    WebElement testTaker_input;
-
+    WebElement testTakerInput;
     private @FindBy(xpath = "//div[@class='results transition visible']")
-    WebElement testTaker_input_result;
-
+    WebElement testTakerResult;
     private @FindBy(xpath = "//*[contains(@class, 'ui primary button') and text() = 'Assign Session']")
-    WebElement assign_session_button;
-
+    WebElement assignSessionButton;
     private @FindBy(xpath = "//div[@class = 'Toastify__toast-body']")
-    WebElement success_message_toast;
-
+    WebElement successMessageToast;
     private @FindBy(xpath = "//span[@class='src-common-components-UserSearch-UserSearch__title']")
-    WebElement session_search_result;
+    WebElement sessionSearchResult;
 
-    public Session_PageObject() {
+    public SessionPageObject() {
         super();
     }
 
-    public void clickOn_Session_link() {
-        waitForElementAndClick(session_MenuLink);
+    public void clickOnSessionLink() {
+        waitForElementAndClick(sessionMenuLink);
     }
 
-    public void clickOn_Assign_Session_Button() {
-        waitForElementAndClick(session_button);
+    public void clickOnAssignSessionButton() {
+        waitForElementAndClick(sessionButton);
     }
 
-    public void clickOn_Template() {
-        waitForElementAndClick(template_searchIcon);
+    public void clickOnTemplate() {
+        waitForElementAndClick(templateSearchIcon);
     }
 
-    public void clickOn_Template_Option() {
-        waitForElementAndClick(template_option);
+    public void clickOnTemplateOption() {
+        waitForElementAndClick(templateOption);
     }
 
-    public void clickOn_StartDatePicker_Input_And_Select_Current_Date() {
-        waitForElementAndClick(start_date_input);
-        waitForElementAndClick(current_date);
+    public void clickOnStartDatePickerInputAndSelectCurrentDate() {
+        waitForElementAndClick(startDateInput);
+        waitForElementAndClick(currentDate);
     }
 
-    public void clickOn_EndDatePicker_Input_And_Select_Current_Date() {
-        waitForElementAndClick(end_date_input);
-        waitForElementAndClick(current_date);
-        waitForElementAndClick(end_time);
+    public void clickOnEndDatePickerInputAndSelectCurrentDate() {
+        waitForElementAndClick(endDateInput);
+        waitForElementAndClick(currentDate);
+        waitForElementAndClick(endTime);
         // TODO 23:50ten sonra test çalışırsa listede eleman kalmayacak ve burası patlayabilir
         // TODO en son end date 1 gün sonrası seçilirse sıkıntı kalmaz
     }
 
-    public void clickOn_Assignment_Type_Selection() {
-        waitForElementAndClick(assignment_type_select);
+    public void clickOnAssignmentTypeSelection() {
+        waitForElementAndClick(assignmentTypeSelect);
     }
 
-    public void clickOn_Assignment_Type_Option() {
-        waitForElementAndClick(assignment_type_option);
+    public void clickOnAssignmentTypeOption() {
+        waitForElementAndClick(assignmentTypeOption);
     }
 
-    public void clickOn_TestTaker_And_Set_User() {
+    public void clickOnTestTakerAndSetUser() {
 
-        waitForElementAndClick(testTaker_input);
+        waitForElementAndClick(testTakerInput);
         WebDriver driver = DriverFactory.getDriver();
         Actions action = new Actions(driver);
-        testTaker_input.sendKeys("Super Admin");
-        waitElement(session_search_result);
+        testTakerInput.sendKeys("Super Admin");
+        waitElement(sessionSearchResult);
         action.keyDown(Keys.DOWN);
         action.sendKeys(Keys.ENTER);
         action.build().perform();
     }
 
-    public void clickOn_Assign_Session_Form_Button() {
-        waitForElementAndClick(assign_session_button);
+    public void clickOnAssignSessionFormButton() {
+        waitForElementAndClick(assignSessionButton);
     }
 
-    public void validate_Complete_Assign_Session() {
-        waitForAlertAndValidateText(success_message_toast, "Session successfully created.");
+    public void validateCompleteAssignSession() {
+        waitForAlertAndValidateText(successMessageToast, "Session successfully created.");
     }
 }

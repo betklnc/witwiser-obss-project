@@ -5,14 +5,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObject.BasePageObject;
 import pageObject.LoginPageObject;
-import pageObject.Session_PageObject;
+import pageObject.SessionPageObject;
 
 public class AssignSessionStepsDef extends BasePageObject {
 
     private LoginPageObject login_po;
-    private Session_PageObject session_po;
+    private SessionPageObject session_po;
 
-    public AssignSessionStepsDef(LoginPageObject login_po, Session_PageObject session_po) {
+    public AssignSessionStepsDef(LoginPageObject login_po, SessionPageObject session_po) {
         this.login_po = login_po;
         this.session_po = session_po;
     }
@@ -27,21 +27,21 @@ public class AssignSessionStepsDef extends BasePageObject {
 
     @When("User assigns session to user")
     public void user_assigns_session_to_user() {
-        session_po.clickOn_Session_link();
-        session_po.clickOn_Assign_Session_Button();
-        session_po.clickOn_Template();
-        session_po.clickOn_Template_Option();
-        session_po.clickOn_StartDatePicker_Input_And_Select_Current_Date();
-        session_po.clickOn_EndDatePicker_Input_And_Select_Current_Date();
-        session_po.clickOn_Assignment_Type_Selection();
-        session_po.clickOn_Assignment_Type_Option();
-        session_po.clickOn_TestTaker_And_Set_User();
-        session_po.clickOn_Assign_Session_Form_Button();
+        session_po.clickOnSessionLink();
+        session_po.clickOnAssignSessionButton();
+        session_po.clickOnTemplate();
+        session_po.clickOnTemplateOption();
+        session_po.clickOnStartDatePickerInputAndSelectCurrentDate();
+        session_po.clickOnEndDatePickerInputAndSelectCurrentDate();
+        session_po.clickOnAssignmentTypeSelection();
+        session_po.clickOnAssignmentTypeOption();
+        session_po.clickOnTestTakerAndSetUser();
+        session_po.clickOnAssignSessionFormButton();
     }
 
     @Then("It's seen that user complete assigning session")
     public void it_s_seen_that_user_complete_assigning_session() {
-        session_po.validate_Complete_Assign_Session();
+        session_po.validateCompleteAssignSession();
     }
 
 }
