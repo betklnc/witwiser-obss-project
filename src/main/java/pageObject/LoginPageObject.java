@@ -2,7 +2,7 @@ package pageObject;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import utils.Global_Vars;
+import utils.GlobalVars;
 
 public class LoginPageObject extends BasePageObject {
 
@@ -18,7 +18,7 @@ public class LoginPageObject extends BasePageObject {
     }
 
     public void navigateToWitwiserUrl() {
-        navigateToURL(Global_Vars.HOMEPAGE_URL);
+        navigateToURL(GlobalVars.HOMEPAGE_URL);
     }
 
     public void setUsername(String username) {

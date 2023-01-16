@@ -5,7 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import utils.Global_Vars;
+import utils.GlobalVars;
 
 import java.time.Duration;
 
@@ -21,7 +21,7 @@ public class BasePageObject {
     }
 
     public void sendKeys(WebElement by, String textToType) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_EXPLICIT_TIMEOUT)); // TODO bu obje tek oluşturulacak. singleton pattern araştır.
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVars.DEFAULT_EXPLICIT_TIMEOUT)); // TODO bu obje tek oluşturulacak. singleton pattern araştır.
         wait.until(ExpectedConditions.elementToBeClickable(by)).sendKeys(textToType);
     }
 
@@ -30,7 +30,7 @@ public class BasePageObject {
     }
 
     public WebElement waitElement(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_EXPLICIT_TIMEOUT));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVars.DEFAULT_EXPLICIT_TIMEOUT));
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
@@ -47,7 +47,7 @@ public class BasePageObject {
 
     private long getTimeout(int timeoutOfMillis) {
         if (timeoutOfMillis == 0) {
-            return Global_Vars.DEFAULT_EXPLICIT_TIMEOUT * 1000; // turn into seconds
+            return GlobalVars.DEFAULT_EXPLICIT_TIMEOUT * 1000; // turn into seconds
         }
         return timeoutOfMillis;
     }
