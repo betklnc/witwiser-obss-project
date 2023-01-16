@@ -28,8 +28,12 @@ public class Base_PO {
     }
 
     public void waitForElementAndClick(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_EXPLICIT_TIMEOUT));
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        waitElement(element).click();
+    }
+
+    public WebElement waitElement(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_EXPLICIT_TIMEOUT)); // TODO her seferinde obje oluşturuyor manyak
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public void waitForAlert_And_ValidateText(WebElement element, String text) {

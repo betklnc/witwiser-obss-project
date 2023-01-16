@@ -1,8 +1,11 @@
 package pageObject;
 
+import drivers.DriverFactory;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 
 public class Session_PO extends Base_PO {
     private @FindBy(xpath = "(//a[@class=\"item src-common-components-Navbar-NavbarItem-NavbarItem__item  \"])[4]")
@@ -33,18 +36,14 @@ public class Session_PO extends Base_PO {
     private @FindBy(xpath = "//div[@class='results transition visible']")
     WebElement testTaker_input_result;
 
-  private @FindBy(xpath = "//*[contains(@class, 'ui primary button') and text() = 'Assign Session']")
+    private @FindBy(xpath = "//*[contains(@class, 'ui primary button') and text() = 'Assign Session']")
     WebElement assign_session_button;
 
-
-private @FindBy(xpath = "//div[@class = 'Toastify__toast-body']")
+    private @FindBy(xpath = "//div[@class = 'Toastify__toast-body']")
     WebElement success_message_toast;
 
-
-    /**
-     * 1
-     * 1 -> 2
-     */
+    private @FindBy(xpath = "//span[@class='src-common-components-UserSearch-UserSearch__title']")
+    WebElement session_search_result;
 
     public Session_PO() {
         super();
@@ -88,19 +87,22 @@ private @FindBy(xpath = "//div[@class = 'Toastify__toast-body']")
     }
 
     public void clickOn_TestTaker_And_Set_User() {
-        waitForElementAndClick(testTaker_input);
-        sendKeys(testTaker_input, "Super Admin");
-        waitForElementAndClick(testTaker_input_result);
-    }
-     public void clickOn_Assign_Session_Form_Button() {
-        waitForElementAndClick(assign_session_button);
 
+        waitForElementAndClick(testTaker_input);
+        WebDriver driver = DriverFactory.getDriver();
+        Actions action = new Actions(driver);
+        testTaker_input.sendKeys("Super Admin");
+        waitElement(session_search_result);
+        action.keyDown(Keys.DOWN);
+        action.sendKeys(Keys.ENTER);
+        action.build().perform();
+    }
+
+    public void clickOn_Assign_Session_Form_Button() {
+        waitForElementAndClick(assign_session_button);
     }
 
     public void validate_Complete_Assign_Session() {
         waitForAlert_And_ValidateText(success_message_toast, "Session successfully created.");
     }
-
-
-
 }

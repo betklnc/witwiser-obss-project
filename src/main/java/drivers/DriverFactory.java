@@ -1,7 +1,7 @@
 package drivers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -55,6 +55,8 @@ public class DriverFactory {
 
     public static void clearCookieBeforeStart() {
         getDriver().manage().deleteAllCookies();
+        getDriver().get("chrome://settings/clearBrowserData");
+        getDriver().findElement(By.xpath("//settings-ui")).sendKeys(Keys.ENTER);
     }
 
     public static void cleanupDriver() {

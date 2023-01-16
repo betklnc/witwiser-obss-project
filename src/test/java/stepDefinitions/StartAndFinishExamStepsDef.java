@@ -1,3 +1,5 @@
+package stepDefinitions;
+
 import io.cucumber.java.en.*;
 import pageObject.Base_PO;
 import pageObject.Exam_PO;
@@ -21,7 +23,6 @@ public class StartAndFinishExamStepsDef extends Base_PO {
         exam_po.clickOn_Start_Test_Button();
         exam_po.clickOn_Exam_Start_Test_Button();
         exam_po.answer_Questions();
-        exam_po.clickOn_FinishTest_Button();
         exam_po.clickOn_Complete_Test_Button();
     }
 
