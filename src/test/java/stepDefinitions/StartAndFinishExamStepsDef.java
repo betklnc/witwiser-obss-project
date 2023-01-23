@@ -1,9 +1,7 @@
 package stepDefinitions;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import pageObject.BasePageObject;
 import pageObject.ExamPageObject;
 
@@ -30,6 +28,6 @@ public class StartAndFinishExamStepsDef extends BasePageObject {
 
     @Then("It's seen that user complete exam assigned")
     public void it_s_seen_that_user_complete_exam_assigned() {
-
+        examPo.validateIfExamIsCompleted();
     }
 }

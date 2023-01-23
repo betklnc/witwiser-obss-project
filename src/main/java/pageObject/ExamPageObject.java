@@ -38,6 +38,8 @@ public class ExamPageObject extends BasePageObject {
     WebElement answerFromDragDrop;
     private @FindBy(xpath = "//span[@class ='src-common-components-Questions-DragAndDrop-QuestionPreview__placeholder']")
     WebElement answerToDragDrop;
+   private @FindBy(xpath = "//button[@class='ui basic primary disabled button src-scenes-session-components-SessionInfoCard-SessionInfoCard__startButton src-common-components-AssesmentButton-AssesmentButton__button']")
+    WebElement completedButtonText;
 
 
     public ExamPageObject() {
@@ -133,4 +135,7 @@ public class ExamPageObject extends BasePageObject {
         waitForElementAndClick(completeTestButton);
     }
 
+    public void validateIfExamIsCompleted(){
+        waitForAlertAndValidateText(completedButtonText, "Completed");
+    }
 }
